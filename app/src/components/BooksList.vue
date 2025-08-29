@@ -1,9 +1,16 @@
 <script setup>
-  import getBooks from '@/composables/getBooks'
+  import useBooks from '@/composables/useBooks'
 
-  const { books, load } = getBooks()
+  const { books, getBooks, getSingleBook } = useBooks()
 
-  load()
+  const showBook = async id => {
+    const book = await getSingleBook(id);
+    if (book) {
+      console.log(book);
+    }
+  }
+
+  getBooks()
 </script>
 <template>
   <ol>
@@ -12,6 +19,7 @@
       <h3>{{ author }}</h3>
       <h4>{{ tags }}</h4>
       <h5>{{ id }}</h5>
+      <h6><button @click="showBook(id)">Megnéz</button></h6>
     </li>
   </ol>
 </template>
