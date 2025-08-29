@@ -1,16 +1,15 @@
   import db from '@/firebase/config'
-  import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+  import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
   import { ref } from 'vue'
 
   const useBooks = () => {
     const books = ref([])
+    const booksCollection = collection(db, 'books')
 
     const getBooks = async () => {
       try {
-        const booksRef = collection(db, 'books')
-        const booksSnapshot = await getDocs(booksRef)
-
-        books.value = booksSnapshot.docs
+        const booksSnap = await getDocs(booksCollection)
+        books.value = booksSnap.docs
           .map(book => ({ id: book.id, ...book.data() }))
       } catch (err) {
         console.log(err)
@@ -20,10 +19,10 @@
     const getSingleBook = async id => {
       try {
         const bookRef = doc(db, 'books', id)
-        const bookSnapshot = await getDoc(bookRef)
+        const bookSnap = await getDoc(bookRef)
 
-        if (bookSnapshot.exists()) {
-          return { id: bookSnapshot.id, ... bookSnapshot.data() }
+        if (bookSnap.exists()) {
+          return { id: bookSnap.id, ... bookSnap.data() }
         }
 
         throw new Error(`${id} azonosítóval nem található könyv!`);
@@ -32,7 +31,17 @@
       }
     }
 
-    return { books, getBooks, getSingleBook }
+    const addBook = async (book) => {
+      try {
+        const bookRef = await addDoc(booksCollection, book)
+        await getBooks()
+        return bookRef.id
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    return { addBook, books, getBooks, getSingleBook }
   }
 
   export default useBooks

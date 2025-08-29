@@ -1,7 +1,7 @@
 <script setup>
   import useBooks from '@/composables/useBooks'
 
-  const { books, getBooks, getSingleBook } = useBooks()
+  const { addBook, books, getBooks, getSingleBook } = useBooks()
 
   const showBook = async id => {
     const book = await getSingleBook(id);
@@ -10,9 +10,15 @@
     }
   }
 
+  const createBook = async () => {
+    const bookId = await addBook({ author: 'Frank Herbert', title: 'Dune', tags: ['scienceFiction'] })
+    alert(`${bookId} azonosítóval új könyv lett hozzáadva.`)
+  }
+
   getBooks()
 </script>
 <template>
+  <div><button @click="createBook">Add Book</button></div>
   <ol>
     <li v-for="{ id, author, title, tags } in books" :key="id">
       <h2>{{ title }}</h2>

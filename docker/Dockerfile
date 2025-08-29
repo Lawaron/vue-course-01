@@ -24,7 +24,7 @@ COPY . .
 
 EXPOSE 5173
 
-ENTRYPOINT ["npm", "run", "dev"]
+ENTRYPOINT ["npm"]
 
-CMD ["--", "--host"]
+CMD ["run", "dev", "--", "--host"]
 
