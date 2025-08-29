@@ -18,7 +18,5 @@ services:
     ports:
       - "80:5173"
 
-    command: /bin/bash
-
     tty: true
     stdin_open: true

@@ -10,8 +10,21 @@ RUN usermod -u $HOST_UID node && \
 
 WORKDIR /home/node/app
 
+COPY ./app/package*.json .
+
+RUN npm install
+
+VOLUME /home/node/app/node_modules
+
 RUN chown -R node:node .
 
 USER node
 
+COPY . .
+
 EXPOSE 5173
+
+ENTRYPOINT ["npm", "run", "dev"]
+
+CMD ["--", "--host"]
+

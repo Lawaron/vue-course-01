@@ -1,4 +1,10 @@
-<script setup></script>
+<script setup>
+  import getBooks from '@/composables/getBooks'
+
+  const { load } = getBooks()
+
+  load()
+</script>
 
 <template>
   <h1>You did it!</h1>
@@ -7,5 +13,3 @@
     documentation
   </p>
 </template>
-
-<style scoped></style>
