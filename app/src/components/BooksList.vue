@@ -1,7 +1,7 @@
 <script setup>
   import useBooks from '@/composables/useBooks'
 
-  const { addBook, books, getBooks, getSingleBook } = useBooks()
+  const { addBook, books, deleteBook, getBooks, getSingleBook, loading } = useBooks()
 
   const showBook = async id => {
     const book = await getSingleBook(id);
@@ -11,21 +11,38 @@
   }
 
   const createBook = async () => {
-    const bookId = await addBook({ author: 'Frank Herbert', title: 'Dune', tags: ['scienceFiction'] })
+    const bookId = await addBook({
+      author: 'Frank Herbert',
+      title: 'Dune',
+      tags: [
+        'science fiction'
+      ],
+    })
     alert(`${bookId} azonosítóval új könyv lett hozzáadva.`)
+    await getBooks()
+  }
+
+  const removeBook = async id => {
+    await deleteBook(id)
+    await getBooks()
   }
 
   getBooks()
 </script>
 <template>
-  <div><button @click="createBook">Add Book</button></div>
+  <p v-if="loading">Loading...</p>
+  <p><button @click="createBook">Add Book</button></p>
   <ol>
-    <li v-for="{ id, author, title, tags } in books" :key="id">
+    <li v-for="{ author, createdAt, id, tags, title } in books" :key="id">
       <h2>{{ title }}</h2>
       <h3>{{ author }}</h3>
       <h4>{{ tags }}</h4>
       <h5>{{ id }}</h5>
-      <h6><button @click="showBook(id)">Megnéz</button></h6>
+      <h5>{{ createdAt }}</h5>
+      <h6>
+        <button @click="showBook(id)">Megnéz</button>
+        <button @click="removeBook(id)">Töröl</button>
+      </h6>
     </li>
   </ol>
 </template>
