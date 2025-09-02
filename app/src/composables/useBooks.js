@@ -1,5 +1,6 @@
+  import { dateTimeformatter } from "@/utils/formatter"
   import db from "@/firebase/firestore"
-  import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, orderBy, onSnapshot, query, Timestamp } from "firebase/firestore";
+  import { addDoc, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, orderBy, query, updateDoc, Timestamp } from "firebase/firestore";
   import { ref } from "vue"
 
   const useBooks = () => {
@@ -8,21 +9,13 @@
 
     const mapBook = book => {
       const { author, createdAt, tags, title } = book.data()
-      const formatter = new Intl.DateTimeFormat("hu-HU",{
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit"
-      })
 
       return {
         id: book.id,
         author,
         title,
         tags,
-        createdAt: formatter.format(createdAt.toDate())
+        createdAt: dateTimeformatter.format(createdAt.toDate())
       }
     }
 
@@ -86,7 +79,21 @@
       }
     }
 
-    return { addBook, books, deleteBook, getBooks, getSingleBook, loading }
+    const addTag = async (id, tag) => {
+      loading.value = true
+      try {
+        const bookRef = doc(db, "books", id)
+        await updateDoc(bookRef, {
+          tags: arrayUnion(tag)
+        })
+      } catch (err) {
+        console.log(err)
+      } finally {
+        loading.value = false
+      }
+    }
+
+    return { addBook, addTag, books, deleteBook, getBooks, getSingleBook, loading }
   }
 
   export default useBooks

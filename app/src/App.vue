@@ -5,11 +5,8 @@
 
 <template>
   <div class="container">
-  <div class="oszlop">
-    <h1>Books</h1>
     <BooksList />
-  </div>
-  <RealTimeBooks />
+    <RealTimeBooks />
 </div>
 </template>
 <style>
