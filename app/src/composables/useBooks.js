@@ -1,5 +1,5 @@
   import db from '@/firebase/config'
-  import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, orderBy, query, Timestamp } from "firebase/firestore";
+  import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, orderBy, onSnapshot, query, Timestamp } from "firebase/firestore";
   import { ref } from 'vue'
 
   const useBooks = () => {

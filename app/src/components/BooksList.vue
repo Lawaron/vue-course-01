@@ -6,7 +6,7 @@
   const showBook = async id => {
     const book = await getSingleBook(id);
     if (book) {
-      console.log(book);
+      alert(`Könyv adatai:\n${book.author} - ${book.title}\n(${book.tags}).`)
     }
   }
 
@@ -30,7 +30,7 @@
   getBooks()
 </script>
 <template>
-  <p v-if="loading">Loading...</p>
+  <h1>Books<span v-if="loading">|Loading...</span></h1>
   <p><button @click="createBook">Add Book</button></p>
   <ol>
     <li v-for="{ author, createdAt, id, tags, title } in books" :key="id">
