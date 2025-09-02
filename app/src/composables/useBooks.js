@@ -1,6 +1,6 @@
-  import db from '@/firebase/config'
+  import db from "@/firebase/firestore"
   import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, orderBy, onSnapshot, query, Timestamp } from "firebase/firestore";
-  import { ref } from 'vue'
+  import { ref } from "vue"
 
   const useBooks = () => {
     const books = ref([])
@@ -8,13 +8,13 @@
 
     const mapBook = book => {
       const { author, createdAt, tags, title } = book.data()
-      const formatter = new Intl.DateTimeFormat('hu-HU',{
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
+      const formatter = new Intl.DateTimeFormat("hu-HU",{
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
       })
 
       return {
@@ -29,9 +29,9 @@
     const getBooks = async () => {
       loading.value = true
       try {
-        const booksCollection = collection(db, 'books')
-        // const q = query(booksCollection, orderBy('createdAt', 'desc'))
-        const q = query(booksCollection, orderBy('title', 'asc'))
+        const booksCollection = collection(db, "books")
+        // const q = query(booksCollection, orderBy("createdAt", "desc"))
+        const q = query(booksCollection, orderBy("title", "asc"))
         const booksSnap = await getDocs(q)
         books.value = booksSnap.docs.map(mapBook)
       } catch (err) {
@@ -44,7 +44,7 @@
     const getSingleBook = async id => {
       loading.value = true
       try {
-        const bookRef = doc(db, 'books', id)
+        const bookRef = doc(db, "books", id)
         const bookSnap = await getDoc(bookRef)
 
         if (bookSnap.exists()) {
@@ -62,7 +62,7 @@
     const addBook = async book => {
       loading.value = true
       try {
-        const booksCollection = collection(db, 'books')
+        const booksCollection = collection(db, "books")
         const bookRef = await addDoc(booksCollection, {
           ...book,
           createdAt: Timestamp.now()
@@ -77,7 +77,7 @@
 
     const deleteBook = async id => {
       try {
-        const bookRef = doc(db, 'books', id)
+        const bookRef = doc(db, "books", id)
         await deleteDoc(bookRef)
       } catch (err) {
         console.log(err)

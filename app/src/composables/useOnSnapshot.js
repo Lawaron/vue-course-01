@@ -1,6 +1,6 @@
-import db from '@/firebase/config'
-import { collection, onSnapshot } from 'firebase/firestore';
-import { onMounted, onUnmounted, ref } from 'vue';
+import db from "@/firebase/firestore"
+import { collection, onSnapshot } from "firebase/firestore";
+import { onMounted, onUnmounted, ref } from "vue";
 
 const useOnSnapshot = collectionName => {
     const data = ref([])
