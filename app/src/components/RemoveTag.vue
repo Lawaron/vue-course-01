@@ -18,5 +18,9 @@
   }
 </script>
 <template>
-  <button @click="removeTag" :disabled="disabled">{{ tag }}</button>
+  <button
+    class="btn btn-outline-info btn-sm m-1"
+    @click="removeTag"
+    :disabled="disabled"
+    >{{ tag }}</button>
 </template>

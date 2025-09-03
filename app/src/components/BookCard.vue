@@ -17,7 +17,7 @@
 <template>
   <h2>{{ title }}</h2>
   <h3>{{ author }}</h3>
-  <h4>
+  <h5>
     <remove-tag
       v-for="tag in tags" :key="`${id}-${tag}`"
       v-bind="$attrs"
@@ -25,10 +25,10 @@
       :tag="tag"
       :disabled="loading"
       ></remove-tag>
-  </h4>
+  </h5>
   <h5>{{ id }}</h5>
   <h5>{{ createdAt }}</h5>
-  <h6>
+  <h6 class="d-flex justify-content-between">
     <show-book
       v-bind="$attrs"
       :id="id"

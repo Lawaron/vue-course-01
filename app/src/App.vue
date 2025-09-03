@@ -5,20 +5,9 @@
 
 <template>
   <div class="container">
-    <BooksList />
-    <RealTimeBooks />
+    <div class="row align-items-start">
+      <BooksList />
+      <RealTimeBooks />
+    </div>
 </div>
 </template>
-<style>
-  .container {
-    display: flex;
-    gap: 10px;
-  }
-
-  .oszlop {
-    flex: 1;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-</style>

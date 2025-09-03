@@ -20,6 +20,7 @@
 </script>
 <template>
   <input
+    class="form-control"
     type="text"
     name="new_tag"
     id="new-tag"

@@ -24,5 +24,10 @@
   }
 </script>
 <template>
-  <button @click="createBook" :disabled="disabled">Add Book</button>
+  <button
+    type="button"
+    class="btn btn-outline-primary btn-sm"
+    @click="createBook"
+    :disabled="disabled"
+    >Add Book</button>
 </template>

@@ -18,5 +18,9 @@
   }
 </script>
 <template>
-  <button @click="showBook" :disabled="disabled">View Book</button>
+  <button
+    class="btn btn-outline-secondary btn-sm m-1"
+    @click="showBook"
+    :disabled="disabled"
+    ><i class="bi bi-book"></i></button>
 </template>

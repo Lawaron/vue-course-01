@@ -18,5 +18,9 @@
   }
 </script>
 <template>
-  <button @click="removeBook" :disabled="disabled">Delete</button>
+  <button
+    class="btn btn-outline-danger btn-sm m-1"
+    @click="removeBook"
+    :disabled="disabled"
+    ><i class="bi bi-trash"></i></button>
 </template>
