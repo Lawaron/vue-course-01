@@ -1,7 +1,7 @@
 <script setup>
-  import { computed, defineProps } from "vue"
+  import { computed } from "vue"
 
-  const { action, docId} = defineProps(["action", "docId"])
+  const { action, docId } = defineProps(["action", "docId"])
   const emit = defineEmits(["closeChange"])
   const alertClasses = computed(() => ({
     "alert": true,

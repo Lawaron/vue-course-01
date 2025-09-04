@@ -1,13 +1,12 @@
 <script setup>
   import useBooks from "@/composables/useBooks"
-  import { defineProps, defineEmits } from "vue"
 
-  const props = defineProps(["bookId", "tag", "disabled"])
+  const { bookId, tag, disabled } = defineProps(["bookId", "tag", "disabled"])
   const emit = defineEmits(["success", "failure", "update:loading"])
   const { deleteTag, error } = useBooks(emit)
 
   const removeTag = async () => {
-    await deleteTag(props.bookId, props.tag)
+    await deleteTag(bookId, tag)
 
     if (error.value) {
       emit("failure", error.value)
@@ -19,6 +18,7 @@
 </script>
 <template>
   <button
+    v-tooltip="`Click to remove tag<br>${tag}`"
     class="btn btn-outline-info btn-sm m-1"
     @click="removeTag"
     :disabled="disabled"

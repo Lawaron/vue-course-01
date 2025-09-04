@@ -1,13 +1,12 @@
 <script setup>
   import useBooks from "@/composables/useBooks"
-  import { defineEmits, defineProps } from "vue"
 
-  const props = defineProps(["id", "disabled"])
+  const { id, disabled } = defineProps(["id", "disabled"])
   const emit = defineEmits(["failure", "update:loading"])
   const { getSingleBook, error } = useBooks(emit)
 
   const showBook = async () => {
-    const book = await getSingleBook(props.id);
+    const book = await getSingleBook(id);
 
     if (error.value) {
       emit("failure", error.value)

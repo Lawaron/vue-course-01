@@ -1,8 +1,7 @@
 <script setup>
   import useBooks from "@/composables/useBooks"
-  import { defineEmits } from "vue"
 
-  const props = defineProps(["disabled"])
+  const { disabled } = defineProps(["disabled"])
   const emit = defineEmits(["success", "failure", "update:loading"])
   const { addBook, error } = useBooks(emit)
 

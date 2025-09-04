@@ -2,12 +2,12 @@
   import useBooks from "@/composables/useBooks"
   import { defineEmits } from "vue"
 
-  const props = defineProps(["id"])
+  const { id } = defineProps(["id"])
   const emit = defineEmits(["success", "failure", "update:loading"])
   const { addTag, error, loading } = useBooks(emit)
 
   const addNewTag = async event => {
-    await addTag(props.id, event.target.value)
+    await addTag(id, event.target.value)
 
     if (error.value) {
       emit("failure", error.value)
