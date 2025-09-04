@@ -1,4 +1,4 @@
-const dateTimeformatter = new Intl.DateTimeFormat("hu-HU",{
+const dateTimeformatter = new Intl.DateTimeFormat("hu-HU", {
   weekday: "long",
   year: "numeric",
   month: "long",

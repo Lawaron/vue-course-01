@@ -16,9 +16,16 @@
 
     emit("success")
   }
+
+  const tooltip = {
+    text: "Remove Book",
+    placement: "bottom",
+    trigger: "hover"
+  }
 </script>
 <template>
   <button
+    v-tooltip="tooltip"
     class="btn btn-outline-danger btn-sm m-1"
     @click="removeBook"
     :disabled="disabled"

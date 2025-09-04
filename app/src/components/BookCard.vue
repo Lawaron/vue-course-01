@@ -1,9 +1,9 @@
 <script setup>
   import { defineProps } from "vue"
-  import ShowBook from './ShowBook.vue';
-  import RemoveBook from './RemoveBook.vue';
-  import AddTag from './AddTag.vue';
-  import RemoveTag from "./RemoveTag.vue";
+  import ShowBook from './ShowBook.vue'
+  import RemoveBook from './RemoveBook.vue'
+  import AddTag from './AddTag.vue'
+  import RemoveTag from "./RemoveTag.vue"
 
   const props = defineProps([
     "id",

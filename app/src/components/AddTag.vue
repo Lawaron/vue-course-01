@@ -17,9 +17,12 @@
     event.target.value = ""
     emit("success")
   }
+  const info = "Add new tag and press Enter"
 </script>
 <template>
   <input
+    v-tooltip.bottom.focus="info"
+    :placeholder="info"
     class="form-control"
     type="text"
     name="new_tag"

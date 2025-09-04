@@ -19,6 +19,7 @@
 </script>
 <template>
   <button
+    v-tooltip.bottom.hover="'Show Book Details'"
     class="btn btn-outline-secondary btn-sm m-1"
     @click="showBook"
     :disabled="disabled"

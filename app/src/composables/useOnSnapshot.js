@@ -15,10 +15,12 @@ const useOnSnapshot = collectionName => {
              id: doc.id
           }))
 
-          changes.value = snap.docChanges().map(change =>({
-            action: change.type,
-            docId: change.doc.id
-          }))
+          snap.docChanges().forEach(change => {
+            changes.value.push({
+              action: change.type,
+              docId: change.doc.id
+            })
+          })
         })
     })
 

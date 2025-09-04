@@ -26,7 +26,7 @@
 <template>
   <button
     type="button"
-    class="btn btn-outline-primary btn-sm"
+    class="btn btn-outline-primary btn-sm my-3 mx-2"
     @click="createBook"
     :disabled="disabled"
     >Add Book</button>

@@ -1,7 +1,7 @@
 <script setup>
   import useBooks from '@/composables/useBooks'
-  import CreateBook from './CreateBook.vue';
-  import BookCard from "./BookCard.vue";
+  import CreateBook from './CreateBook.vue'
+  import BookCard from "./BookCard.vue"
 
   const { books, getBooks, loading } = useBooks()
 
@@ -16,24 +16,22 @@
 </script>
 <template>
   <div class="col">
-    <div class="d-flex justify-content-start align-items-center">
-      <h1>Books</h1>
-      <span class="spinner-border text-info m-2" role="status"  v-if="loading">
-        <span class="visually-hidden">Loading...</span>
-      </span>
-    </div>
-    <p>
+    <div class="d-flex justify-content-start align-items-start">
+      <h1 class="mb-5">Books</h1>
       <create-book
         :disabled="loading"
         @success="handleBookCreated"
         @failure="message"
         ></create-book>
       <button
-        class="btn btn-outline-secondary btn-sm m-1"
+        class="btn btn-outline-secondary btn-sm my-3"
         @click="getBooks"
         :disabled="loading"
         >Reload Books</button>
-    </p>
+      <span class="spinner-border text-info my-3 mx-2" role="status"  v-if="loading">
+        <span class="visually-hidden">Loading...</span>
+      </span>
+    </div>
     <ol class="list-group">
       <li v-for="book in books" :key="book.id" class="list-group-item">
         <book-card
