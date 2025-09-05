@@ -1,6 +1,5 @@
 <script setup>
   import useBooks from "@/composables/useBooks"
-  import { defineEmits } from "vue"
 
   const { id } = defineProps(["id"])
   const emit = defineEmits(["success", "failure", "update:loading"])
