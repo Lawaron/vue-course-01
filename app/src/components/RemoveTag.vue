@@ -18,7 +18,7 @@
 </script>
 <template>
   <button
-    v-tooltip="`Click to remove tag<br>${tag}`"
+    v-tooltip.html="`Click to remove tag<br>${tag}`"
     class="btn btn-outline-info btn-sm m-1"
     @click="removeTag"
     :disabled="disabled"

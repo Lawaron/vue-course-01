@@ -5,7 +5,7 @@ const vTooltip = {
   mounted(el, binding) {
     const options = buildTooltipOptions(binding)
     el.setAttribute("title", options.text)
-    new Tooltip(el, { ...options, html: true })
+    new Tooltip(el, options)
   },
   updated(el, binding) {
     const options = buildTooltipOptions(binding)
