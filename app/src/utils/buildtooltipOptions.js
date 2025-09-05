@@ -1,3 +1,16 @@
+const availablePlacements = [
+  "top",
+  "bottom",
+  "left",
+  "right"
+]
+const availableTriggers = [
+  "click",
+  "focus",
+  "manual",
+  "hover"
+]
+
 const defaultPlacement = "top"
 const defaultTrigger = "hover focus"
 
@@ -18,16 +31,24 @@ function builOptionsFromValue(value) {
   }
 }
 
-function buildOptionsFromModifiers(value, modifiers) {
-  const availablePlacements = ["top", "bottom", "left", "right"]
-  const availableTriggers = ["click", "focus", "manual", "hover"]
+function resolveModifier(availableOptions, modifiers, defaultValue) {
+  return availableOptions.find(p => modifiers[p])
+    || defaultValue
+}
 
+function buildOptionsFromModifiers(value, modifiers) {
   return {
     text: value || "",
     html: modifiers.html || false,
-    placement: availablePlacements
-      .find(p => modifiers[p]) || defaultPlacement,
-    trigger: availableTriggers
-      .find(t => modifiers[t]) || defaultTrigger
+    placement: resolveModifier(
+      availablePlacements,
+      modifiers,
+      defaultPlacement
+    ),
+    trigger: resolveModifier(
+      availableTriggers,
+      modifiers,
+      defaultTrigger
+    )
   }
 }
