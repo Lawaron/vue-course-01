@@ -1,0 +1,38 @@
+<template>
+  <div class="container min-vh-100 d-flex justify-content-center align-items-center">
+    <div v-if="showLogin" class="card shadow p-4 form-card">
+      <LogInForm />
+      <p class="mt-3 text-muted">
+        No account yet?
+        <span
+          class="badge rounded-pill bg-info"
+          @click="showLogin = false"
+          >Sign Up</span> instead.</p>
+    </div>
+    <div v-else  class="card shadow p-4 form-card">
+      <SignUpForm/>
+      <p class="mt-3 text-muted">
+        Already registered?
+        <span
+          class="badge rounded-pill bg-info"
+          @click="showLogin = true"
+          >Login</span> instead.</p>
+    </div>
+  </div>
+</template>
+<script setup>
+  import SignUpForm from '@/components/SignUpForm.vue'
+  import LogInForm from '@/components/LogInForm.vue'
+  import { ref } from 'vue'
+
+  const showLogin = ref(true)
+</script>
+<style scoped>
+  .form-card {
+    width: 100%;
+    max-width: 400px
+  }
+  .badge.rounded-pill {
+    cursor: pointer
+  }
+</style>

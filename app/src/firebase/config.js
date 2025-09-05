@@ -1,11 +1,17 @@
-const config = {
-  apiKey: import.meta.env.APP_FIREBASE_API_KEY,
-  authDomain: import.meta.env.APP_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.APP_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.APP_FIREBASE_APP_ID,
+const {
+  APP_FIREBASE_API_KEY: apiKey,
+  APP_FIREBASE_AUTH_DOMAIN: authDomain,
+  APP_FIREBASE_PROJECT_ID: projectId,
+  APP_FIREBASE_STORAGE_BUCKET: storageBucket,
+  APP_FIREBASE_MESSAGING_SENDER_ID: messagingSenderId,
+  APP_FIREBASE_APP_ID: appId
+} = import.meta.env
+
+export default {
+  apiKey,
+  authDomain,
+  projectId,
+  storageBucket,
+  messagingSenderId,
+  appId
 }
-
-export default config
-

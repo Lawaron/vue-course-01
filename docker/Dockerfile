@@ -1,6 +1,6 @@
 FROM node:24-slim
 
-RUN npm install -g npm@11.5.2
+RUN npm install -g npm@11.6.0
 
 ARG HOST_UID
 ARG HOST_GID
