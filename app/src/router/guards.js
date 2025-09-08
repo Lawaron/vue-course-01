@@ -1,12 +1,10 @@
 import auth from "@/firebase/auth"
+import { onAuthStateChanged } from 'firebase/auth'
 
-export const requireAuth = (to, from, next) => {
-  let user = auth.currentUser
+export const requireAuth = async (to, from, next) => {
+  await new Promise(resolve => onAuthStateChanged(auth, resolve))
 
-  if (!user) {
-    next({ name: "Welcome" })
-    return
-  }
+  const { currentUser } = auth
 
-  next()
+  currentUser ? next() : next({ name: 'Welcome' })
 }

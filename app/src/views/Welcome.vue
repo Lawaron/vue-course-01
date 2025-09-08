@@ -21,10 +21,10 @@
   </div>
 </template>
 <script setup>
-  import SignUpForm from '@/components/SignUpForm.vue'
-  import LoginForm from '@/components/LoginForm.vue'
-  import { ref } from 'vue'
-  import { useRouter } from 'vue-router'
+  import SignUpForm from "@/components/SignUpForm.vue"
+  import LoginForm from "@/components/LoginForm.vue"
+  import { ref } from "vue"
+  import { useRouter } from "vue-router"
 
   const showLogin = ref(true)
   const router = useRouter()
