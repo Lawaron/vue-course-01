@@ -3,6 +3,15 @@ import App from './App.vue'
 import router from './router'
 import '@/assets/bootrstrap-imports'
 
-const app = createApp(App)
-app.use(router)
-app.mount('#app')
+import auth from "@/firebase/auth"
+import { onAuthStateChanged } from "firebase/auth"
+
+let app
+
+onAuthStateChanged(auth, () => {
+  if (!app) {
+    app = createApp(App)
+    .use(router)
+    .mount('#app')
+  }
+})

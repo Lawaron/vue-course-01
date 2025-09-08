@@ -1,7 +1,7 @@
 <template>
   <div class="container min-vh-100 d-flex justify-content-center align-items-center">
     <div v-if="showLogin" class="card shadow p-4 form-card">
-      <LogInForm @logIn="enterChat" />
+      <LoginForm @login="enterChat" />
       <p class="mt-3 text-muted">
         No account yet?
         <span
@@ -22,7 +22,7 @@
 </template>
 <script setup>
   import SignUpForm from '@/components/SignUpForm.vue'
-  import LogInForm from '@/components/LogInForm.vue'
+  import LoginForm from '@/components/LoginForm.vue'
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
 

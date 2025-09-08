@@ -1,6 +1,6 @@
 
 <template>
-  <h5 class="text-center mb-4">Log In</h5>
+  <h5 class="text-center mb-4">Login</h5>
   <form @submit.prevent="handleSubmit">
     <div class="mb-3">
       <label
@@ -41,26 +41,26 @@
       type="submit"
       class="btn btn-outline-info w-100 mt-3"
       >
-      Log in
+      Login
     </button>
   </form>
 </template>
 <script setup>
   import { ref } from "vue"
-  import useLogIn from "@/composables/useLogIn"
+  import useLogin from "@/composables/useLogin"
 
   const email = ref("")
   const password = ref("")
 
-  const { error, logIn } = useLogIn()
+  const { error, login } = useLogin()
 
-  const emit = defineEmits(["logIn"])
+  const emit = defineEmits(["login"])
 
   const handleSubmit = async () => {
-    await logIn(email.value, password.value)
+    await login(email.value, password.value)
 
     if(!error.value) {
-      emit("logIn")
+      emit("login")
     }
   }
 </script>

@@ -1,5 +1,6 @@
 import ChatRoom from "@/views/ChatRoom.vue"
 import Welcome from "@/views/Welcome.vue"
+import { requireAuth } from "./guards"
 
 export default [
   {
@@ -10,6 +11,7 @@ export default [
   {
     path: "/chat-room",
     name: "ChatRoom",
-    component: ChatRoom
+    component: ChatRoom,
+    beforeEnter: requireAuth
   }
 ]
