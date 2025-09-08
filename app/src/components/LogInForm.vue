@@ -30,6 +30,13 @@
         v-model="password"
         >
     </div>
+    <div
+      v-if="error"
+      class="alert alert-danger"
+      role="alert"
+      >
+      {{ error }}
+    </div>
     <button
       type="submit"
       class="btn btn-outline-info w-100 mt-3"
@@ -40,11 +47,20 @@
 </template>
 <script setup>
   import { ref } from "vue"
+  import useLogIn from "@/composables/useLogIn"
 
   const email = ref("")
   const password = ref("")
 
-  const handleSubmit = () => {
-    console.log(email.value, password.value)
+  const { error, logIn } = useLogIn()
+
+  const emit = defineEmits(["logIn"])
+
+  const handleSubmit = async () => {
+    await logIn(email.value, password.value)
+
+    if(!error.value) {
+      emit("logIn")
+    }
   }
 </script>

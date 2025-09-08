@@ -43,6 +43,13 @@
         v-model="password"
         >
     </div>
+    <div
+      v-if="error"
+      class="alert alert-danger"
+      role="alert"
+      >
+      {{ error }}
+    </div>
     <button
       type="submit"
       class="btn btn-outline-info w-100 mt-3"
@@ -53,12 +60,21 @@
 </template>
 <script setup>
   import { ref } from "vue"
+  import useSignUp from "@/composables/useSignUp"
+
+  const { error, signUp } = useSignUp()
 
   const displayName = ref("")
   const email = ref("")
   const password = ref("")
 
-  const handleSubmit = () => {
-    console.log(displayName.value, email.value, password.value)
+  const emit = defineEmits(["signUp"])
+
+  const handleSubmit = async () => {
+    await signUp(email.value, password.value, displayName.value)
+
+    if(!error.value) {
+      emit("signUp")
+    }
   }
 </script>
