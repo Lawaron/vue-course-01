@@ -13,7 +13,7 @@
           id="logoutButton"
           class="btn btn-outline-info"
           @click="handleClick"
-          >Kijelentkezés</button>
+          >Logout</button>
       </div>
     </div>
   </nav>
