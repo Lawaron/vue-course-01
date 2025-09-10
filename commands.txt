@@ -14,3 +14,13 @@ npm install firebase
 
 docker-compose -f docker/docker-compose.yml up --detach --build
 docker exec -it my-vue-container /bin/bash
+
+=== LIVE CHAT ===
+Development Server:
+docker compose up dev --build (--remove-orphans)
+
+Production Build:
+docker compose up builder --build --remove-orphans
+
+Firebase Deploy:
+docker compose up firebase --build (--remove-orphans)
