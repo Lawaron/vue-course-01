@@ -1,7 +1,7 @@
 <template>
   <div :class="wrapperClasses">
     <div class="card w-50 mt-2" :class="cardClasses">
-      <div class="card-header" :class="{ 'border-info': isCurrentUser, 'text-info': isCurrentUser }">
+      <div class="card-header">
         {{ displayName }}
       </div>
       <div class="card-body">
@@ -10,13 +10,16 @@
         </blockquote>
       </div>
       <div class="card-footer text-muted">
-        {{ createdAt }}
+        {{ time }} ago
       </div>
     </div>
   </div>
 </template>
 <script setup>
-  const props = defineProps([
+  import { computed } from "vue"
+  import { formatDistanceToNow } from "date-fns"
+
+  const { id, name, message, createdAt, currentUser } = defineProps([
     "id",
     "name",
     "message",
@@ -24,10 +27,11 @@
     "currentUser"
   ])
 
-  const isCurrentUser = props.currentUser.displayName === props.name
+  const time = computed(() => formatDistanceToNow(createdAt.toDate()))
 
-  const displayName = props.name
-    + (isCurrentUser ? " (you)" : "")
+  const isCurrentUser = currentUser.displayName === name
+
+  const displayName = name + (isCurrentUser ? " (you)" : "")
 
   const wrapperClasses = {
     "d-flex": true,
@@ -35,10 +39,6 @@
   }
 
   const cardClasses = {
-    "border-info": isCurrentUser
-  }
-
-  const headerClasses = {
     "border-info": isCurrentUser,
     "text-info": isCurrentUser
   }

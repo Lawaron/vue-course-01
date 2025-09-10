@@ -1,12 +1,13 @@
 import ChatRoom from "@/views/ChatRoom.vue"
 import Welcome from "@/views/Welcome.vue"
-import { requireAuth } from "./guards"
+import { requireAuth, requireNoAuth } from "./guards"
 
 export default [
   {
     path: "/",
     name: "Welcome",
-    component: Welcome
+    component: Welcome,
+    beforeEnter: requireNoAuth
   },
   {
     path: "/chat-room",

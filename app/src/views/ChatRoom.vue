@@ -1,8 +1,12 @@
 <template>
-  <Navbar />
-  <div class="container">
-    <ChatWindow />
-    <NewChatform />
+  <div class="d-flex flex-column full-height">
+    <Navbar />
+      <div class="flex-grow-1 overflow-auto p-3">
+        <ChatWindow />
+      </div>
+      <div class="p-3 mt-auto">
+          <NewChatform />
+      </div>
   </div>
 </template>
 <script setup>
@@ -23,3 +27,8 @@
   })
 
 </script>
+<style scoped>
+  .full-height {
+    height: 100vh;
+  }
+</style>

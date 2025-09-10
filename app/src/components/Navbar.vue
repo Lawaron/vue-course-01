@@ -3,7 +3,7 @@
     v-if="user"
     class="navbar navbar-expand-lg navbar-dark bg-dark"
     >
-    <div class="container-fluid">
+    <div class="container">
       <span class="navbar-brand mb-0 h1">
         <span id="userName">Hi {{ user.displayName }}!</span>
         <small id="userEmail" class="badge ms-2">Logged in as {{ user.email }}</small>
