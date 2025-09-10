@@ -10,15 +10,21 @@ RUN usermod -u $HOST_UID node && \
 
 FROM base AS firebase
 
+EXPOSE 9005
+
 RUN npm install -g firebase-tools
 
 WORKDIR /firebase
 
-COPY ../firebase/* .
+COPY ./docker/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
-EXPOSE 9005
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-RUN firebase deploy --token "$FIREBASE_TOKEN"
+COPY ./firebase/* .
+
+COPY ./build ./dist
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
 FROM base AS build
 
