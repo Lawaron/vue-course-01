@@ -1,8 +1,6 @@
-FROM node:24-slim
+FROM node:24-slim AS base
 
-RUN npm install -g \
-  npm@11.6.0 \
-  firebase-tools
+RUN npm install -g npm@11.6.0
 
 ARG HOST_UID
 ARG HOST_GID
@@ -10,24 +8,40 @@ ARG HOST_GID
 RUN usermod -u $HOST_UID node && \
     groupmod -g $HOST_GID node
 
-WORKDIR /home/node/app
+FROM base AS firebase
 
-COPY ./app/package*.json .
+RUN npm install -g firebase-tools
 
-RUN npm install
+WORKDIR /firebase
 
-VOLUME /home/node/app/node_modules
+COPY ../firebase/* .
 
-RUN chown -R node:node .
+EXPOSE 9005
+
+RUN firebase deploy --token "$FIREBASE_TOKEN"
+
+FROM base AS build
+
+RUN mkdir /app && chown node:node /app
+
+WORKDIR /app
 
 USER node
 
-COPY . .
+COPY --chown=node:node ./app/package*.json .
+
+RUN npm install
+
+COPY --chown=node:node ./app ./
+
+ENTRYPOINT ["npm"]
+
+CMD ["run", "build"]
+
+FROM build AS dev
 
 EXPOSE 5173
-EXPOSE 9005
 
 ENTRYPOINT ["npm"]
 
 CMD ["run", "dev", "--", "--host"]
-

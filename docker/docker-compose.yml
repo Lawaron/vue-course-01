@@ -1,16 +1,36 @@
+x-build-context: &build-context
+  context: ../
+  dockerfile: ./docker/Dockerfile
+  args:
+    HOST_UID: ${HOST_UID:-1000}
+    HOST_GID: ${HOST_GID:-1000}
+
 services:
-  vue-app:
+  dev:
     build:
-      context: ../
-      dockerfile: ./docker/Dockerfile
-      args:
-        HOST_UID: ${HOST_UID:-1000}
-        HOST_GID: ${HOST_GID:-1000}
-    container_name: my-vue-container
+      <<: *build-context
+      target: dev
+    container_name: app-development-container
     volumes:
-      - ../app:/home/node/app
+      - ../app:/app
+      - /app/node_modules
     ports:
       - "80:5173"
-      - "9005:9005"
     tty: true
     stdin_open: true
+  firebase:
+    build:
+      <<: *build-context
+      target: firebase
+    volumes:
+      - ../build:/firebase/dist
+    ports:
+      - "9005:9005"
+    env_file:
+      - ../firebase/.env
+  builder:
+    build:
+      <<: *build-context
+      target: build
+    volumes:
+      - ../build:/app/dist
