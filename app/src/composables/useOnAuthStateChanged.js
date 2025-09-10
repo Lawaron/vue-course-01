@@ -9,7 +9,7 @@ const useOnAuthStateChanged = () => {
     user.value = _user
   })
 
-  // watchEffect(onInvalidate => onInvalidate(() => unsubscribe()))
+  watchEffect(onInvalidate => onInvalidate(() => unsubscribe()))
 
   return { user }
 }
