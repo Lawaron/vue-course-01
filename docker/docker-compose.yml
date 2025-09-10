@@ -11,5 +11,6 @@ services:
       - ../app:/home/node/app
     ports:
       - "80:5173"
+      - "9005:9005"
     tty: true
     stdin_open: true

@@ -1,6 +1,8 @@
 FROM node:24-slim
 
-RUN npm install -g npm@11.6.0
+RUN npm install -g \
+  npm@11.6.0 \
+  firebase-tools
 
 ARG HOST_UID
 ARG HOST_GID
@@ -23,6 +25,7 @@ USER node
 COPY . .
 
 EXPOSE 5173
+EXPOSE 9005
 
 ENTRYPOINT ["npm"]
 
