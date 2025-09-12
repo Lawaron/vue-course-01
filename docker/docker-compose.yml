@@ -1,20 +1,17 @@
+x-build-context: &build-context
+  context: ../
+  dockerfile: ./docker/Dockerfile
+
 services:
-  vue-app:
+  npm:
     build:
-      context: ../
-      dockerfile: ./docker/Dockerfile
-      args:
-        HOST_UID: ${HOST_UID:-1000}
-        HOST_GID: ${HOST_GID:-1000}
-
-    # A konténer nevének beállítása
-    container_name: my-vue-container
-
+      <<: *build-context
+      target: npm
+    user: "${HOST_UID}:${HOST_GID}"
+    container_name: app-development-container
     volumes:
-      - ../app:/home/node/app
-
+      - ../app:/app
     ports:
       - "80:5173"
-
     tty: true
     stdin_open: true

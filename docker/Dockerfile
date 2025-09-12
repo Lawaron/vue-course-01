@@ -1,30 +1,15 @@
-FROM node:24-slim
+FROM node:24-slim AS base
 
-RUN npm install -g npm@11.5.2
+RUN npm install -g npm@11.6.0
 
-ARG HOST_UID
-ARG HOST_GID
+FROM base AS npm
 
-RUN usermod -u $HOST_UID node && \
-    groupmod -g $HOST_GID node
+RUN mkdir /app && chown node:node /app
 
-WORKDIR /home/node/app
-
-COPY ./app/package*.json .
-
-RUN npm install
-
-VOLUME /home/node/app/node_modules
-
-RUN chown -R node:node .
+WORKDIR /app
 
 USER node
-
-COPY . .
-
-EXPOSE 5173
 
 ENTRYPOINT ["npm"]
 
 CMD ["run", "dev", "--", "--host"]
-

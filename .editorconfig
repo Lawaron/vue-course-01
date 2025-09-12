@@ -1,7 +1,5 @@
-# top-most EditorConfig file
 root = true
 
-# A fájl összes beállítása
 [*]
 charset = utf-8
 indent_style = space
@@ -9,23 +7,3 @@ indent_size = 2
 end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
-
-# Vue fájlok (.vue) specifikus beállításai
-[*.vue]
-indent_style = space
-indent_size = 2
-
-# JavaScript és JSON fájlok (.js, .json)
-[*.{js,json}]
-indent_style = space
-indent_size = 2
-
-# HTML fájlok (.html)
-[*.html]
-indent_style = space
-indent_size = 2
-
-# CSS és SCSS fájlok (.css, .scss)
-[*.{css,scss}]
-indent_style = space
-indent_size = 2
