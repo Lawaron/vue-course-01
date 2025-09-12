@@ -1,5 +1,12 @@
 <template>
-  <form class="mt-3">
+  <div
+    v-if="error"
+    class="alert alert-danger mt-3"
+    role="alert"
+    >
+    {{ error }}
+  </div>
+  <form class="mt-2">
     <textarea
       placeholder="Type a message and hit enter to send..."
       class="form-control"
@@ -8,13 +15,6 @@
       @keypress.enter.prevent="handleSubmit"
     ></textarea>
   </form>
-  <div
-      v-if="error"
-      class="alert alert-danger"
-      role="alert"
-      >
-      {{ error }}
-    </div>
 </template>
 <script setup>
   import { ref } from "vue"
