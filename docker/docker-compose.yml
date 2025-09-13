@@ -15,3 +15,17 @@ services:
       - "80:5173"
     tty: true
     stdin_open: true
+    stop_signal: SIGINT
+  firebase:
+    build:
+      <<: *build-context
+      target: firebase
+    user: "${HOST_UID}:${HOST_GID}"
+    container_name: app-firebase-tools
+    volumes:
+      - ../firebase:/firebase
+      - firebase-config:/home/node/.config
+    tty: true
+    stdin_open: true
+volumes:
+  firebase-config:
