@@ -4,18 +4,22 @@ import auth from "@/firebase/auth"
 
 const useLogin = () => {
   const error = ref(null)
+  const isPending = ref(false)
 
   const login = async (email, password) => {
     try {
+      isPending.value = true
+      error.value = null
       const res = await signInWithEmailAndPassword(auth, email, password)
       return res
     } catch (err) {
-      console.log(err)
       error.value = "Incorrect Login credentials"
+    } finally {
+      isPending.value = false
     }
   }
 
-  return { error, login }
+  return { error, isPending, login }
 }
 
 export default useLogin
