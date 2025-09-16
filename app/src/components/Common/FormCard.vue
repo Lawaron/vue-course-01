@@ -6,8 +6,8 @@
   </div>
 </template>
 <style scoped>
-  .form-card {
-    width: 100%;
-    max-width: 400px
-  }
+.form-card {
+  width: 100%;
+  max-width: 400px;
+}
 </style>

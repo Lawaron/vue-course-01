@@ -1,8 +1,5 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
-  <main class="container">
-    <TheWelcome />
-  </main>
+  <main class="container">Welcome</main>
 </template>

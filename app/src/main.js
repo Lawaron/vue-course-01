@@ -4,6 +4,4 @@ import router from './router'
 import '@/assets/bootrstrap-imports'
 import '@/assets/styles.css'
 
-createApp(App)
-  .use(router)
-  .mount('#app')
+createApp(App).use(router).mount('#app')

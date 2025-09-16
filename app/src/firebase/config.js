@@ -4,7 +4,7 @@ const {
   APP_FIREBASE_PROJECT_ID: projectId,
   APP_FIREBASE_STORAGE_BUCKET: storageBucket,
   APP_FIREBASE_MESSAGING_SENDER_ID: messagingSenderId,
-  APP_FIREBASE_APP_ID: appId
+  APP_FIREBASE_APP_ID: appId,
 } = import.meta.env
 
 export default {
@@ -13,5 +13,5 @@ export default {
   projectId,
   storageBucket,
   messagingSenderId,
-  appId
+  appId,
 }

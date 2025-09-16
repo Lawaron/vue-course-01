@@ -1,12 +1,17 @@
 export default [
   {
     path: '/',
-    name: 'home',
-    component: () => import('@/views/HomeView.vue')
+    name: 'Home',
+    component: () => import('@/views/HomeView.vue'),
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/auth/Login.vue')
-  }
+    component: () => import('@/views/auth/LoginView.vue'),
+  },
+  {
+    path: '/signUp',
+    name: 'SignUp',
+    component: () => import('@/views/auth/SignUpView.vue'),
+  },
 ]
