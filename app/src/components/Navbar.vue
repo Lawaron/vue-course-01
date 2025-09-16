@@ -16,7 +16,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div v-if="!user" class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'SignUp' }">Sign Up</router-link>
@@ -25,11 +25,14 @@
             <router-link class="nav-link" :to="{ name: 'Login' }">Login</router-link>
           </li>
         </ul>
-        <form class="d-flex" @submit.prevent><Logout /></form>
       </div>
+      <form v-else class="d-flex" @submit.prevent><Logout /></form>
     </div>
   </nav>
 </template>
 <script setup>
 import Logout from '@/components/Logout.vue'
+import useOnAuthStateChanged from '@/composables/useOnAuthStateChanged'
+
+const { user } = useOnAuthStateChanged()
 </script>

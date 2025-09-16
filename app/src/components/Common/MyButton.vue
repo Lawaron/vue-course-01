@@ -5,8 +5,6 @@
   </button>
 </template>
 <script setup>
-import { Alert } from 'bootstrap'
-
 defineProps({
   text: String,
   variant: String,

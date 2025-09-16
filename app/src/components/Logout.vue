@@ -3,11 +3,11 @@
   <ErrorAlert v-model:error="error" />
 </template>
 <script setup>
+import ErrorAlert from './Common/ErrorAlert.vue'
 import MyButton from './Common/MyButton.vue'
 import useLogout from '@/composables/useLogout'
-import { useRouter } from 'vue-router'
-import ErrorAlert from './Common/ErrorAlert.vue'
 
+import { useRouter } from 'vue-router'
 const { error, isPending, logout } = useLogout()
 const router = useRouter()
 

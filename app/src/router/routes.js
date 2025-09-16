@@ -14,4 +14,9 @@ export default [
     name: 'SignUp',
     component: () => import('@/views/auth/SignUpView.vue'),
   },
+  {
+    path: '/movies/create',
+    name: 'CreateMovie',
+    component: () => import('@/views/movies/CreateMovie.vue'),
+  },
 ]
