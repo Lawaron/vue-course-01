@@ -23,20 +23,30 @@
     </div>
     <div class="mt-3">
       <label for="input-cover" class="form-label">Cover</label>
-      <input class="form-control" type="file" id="input-cover" />
+      <input class="form-control" type="file" id="input-cover" @change="onFileChange" />
     </div>
     <ErrorAlert v-model:error="error" />
-    <MyButton class="mt-3" text="Create" variant="outline-light" :isPending="false" />
+    <MyButton
+      class="mt-3"
+      text="Create"
+      variant="outline-light"
+      :isPending="false"
+      :disabled="imageData === null"
+    />
   </form>
 </template>
 <script setup>
+import ErrorAlert from '@/components/Common/ErrorAlert.vue'
 import MyButton from '@/components/Common/MyButton.vue'
+import useFileReader from '@/composables/useFileReader'
 import { ref } from 'vue'
 
 const title = ref('')
 const description = ref('')
 const error = ''
+const { imageData, onFileChange } = useFileReader(['image/jpeg'])
+
 const handleSubmit = () => {
-  console.log(title.value, description.value)
+  console.log(imageData.value)
 }
 </script>

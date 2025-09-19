@@ -1,5 +1,5 @@
 <template>
-  <button :disabled="isPending" type="submit" :class="`btn btn-${variant} w-100`">
+  <button :disabled="isPending || disabled" type="submit" :class="`btn btn-${variant} w-100`">
     <span v-if="isPending" class="spinner-border spinner-border-sm" aria-hidden="true"></span>
     <span v-else>{{ text }}</span>
   </button>
@@ -9,5 +9,9 @@ defineProps({
   text: String,
   variant: String,
   isPending: Boolean,
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 })
 </script>
