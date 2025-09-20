@@ -4,9 +4,11 @@ import firestore from '@/firebase/firestore'
 
 const useCollection = (collectionName) => {
   const error = ref(null)
+  const isPending = ref(false)
 
   const addDocument = async (document) => {
     error.value = null
+    isPending.value = true
 
     try {
       const collectionRef = collection(firestore, collectionName)
@@ -15,12 +17,13 @@ const useCollection = (collectionName) => {
         createdAt: Timestamp.now(),
       })
     } catch (err) {
-      console.error(err)
       error.value = 'Could not send the message'
+    } finally {
+      isPending.value = false
     }
   }
 
-  return { error, addDocument }
+  return { error, isPending, addDocument }
 }
 
 export default useCollection

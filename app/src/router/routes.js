@@ -17,6 +17,6 @@ export default [
   {
     path: '/movies/create',
     name: 'CreateMovie',
-    component: () => import('@/views/movies/CreateMovie.vue'),
+    component: () => import('@/views/movies/CreateMovieView.vue'),
   },
 ]

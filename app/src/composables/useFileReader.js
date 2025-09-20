@@ -9,8 +9,6 @@ const useFileReader = (types, maxSize) => {
   const onFileChange = (event) => {
     const file = event.target.files[0]
 
-    console.log(file)
-
     if (!file) return
 
     if (!types.includes(file.type)) {
